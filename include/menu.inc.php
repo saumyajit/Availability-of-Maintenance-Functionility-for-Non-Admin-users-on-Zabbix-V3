@@ -111,6 +111,10 @@ function zbx_construct_menu(&$main_menu, &$sub_menus, &$page, $action = null) {
 					'sub_pages' => ['chart5.php']
 				],
 				[
+					'url' => 'maintenance.php',
+					'label' => _('Maintenance')
+				],
+				[
 					'url' => 'chart3.php'
 				],
 				[
@@ -217,10 +221,6 @@ function zbx_construct_menu(&$main_menu, &$sub_menus, &$page, $action = null) {
 						'httpconf.php',
 						'popup_httpstep.php'
 					]
-				],
-				[
-					'url' => 'maintenance.php',
-					'label' => _('Maintenance')
 				],
 				[
 					'url' => 'actionconf.php',

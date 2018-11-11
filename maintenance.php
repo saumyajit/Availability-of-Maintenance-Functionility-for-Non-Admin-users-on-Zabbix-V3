@@ -98,14 +98,14 @@ check_fields($fields);
 /*
  * Permissions
  */
-if (getRequest('groupid') && !isWritableHostGroups([getRequest('groupid')])) {
+if (getRequest('groupid') && !isReadableHostGroups([getRequest('groupid')])) {
 	access_deny();
 }
 if (isset($_REQUEST['maintenanceid'])) {
 	$dbMaintenance = API::Maintenance()->get([
 		'output' => API_OUTPUT_EXTEND,
 		'selectTimeperiods' => API_OUTPUT_EXTEND,
-		'editable' => true,
+		'editable' => false,
 		'maintenanceids' => getRequest('maintenanceid'),
 	]);
 	if (empty($dbMaintenance)) {
@@ -378,7 +378,7 @@ elseif (isset($_REQUEST['edit_timeperiodid'])) {
 }
 
 $options = [
-	'groups' => ['editable' => 1],
+	'groups' => ['editable' => 0],
 	'groupid' => getRequest('groupid')
 ];
 $pageFilter = new CPageFilter($options);
@@ -412,7 +412,7 @@ if (!empty($data['form'])) {
 			'maintenanceids' => $data['maintenanceid'],
 			'real_hosts' => true,
 			'output' => ['hostid'],
-			'editable' => true
+			'editable' => false
 		]);
 		$data['hostids'] = zbx_objectValues($data['hostids'], 'hostid');
 
@@ -421,7 +421,7 @@ if (!empty($data['form'])) {
 			'maintenanceids' => $data['maintenanceid'],
 			'real_hosts' => true,
 			'output' => ['groupid'],
-			'editable' => true
+			'editable' => false
 		]);
 		$data['groupids'] = zbx_objectValues($data['groupids'], 'groupid');
 	}
@@ -458,7 +458,7 @@ if (!empty($data['form'])) {
 
 	// get groups
 	$data['all_groups'] = API::HostGroup()->get([
-		'editable' => true,
+		'editable' => false,
 		'output' => ['groupid', 'name'],
 		'real_hosts' => true,
 		'preservekeys' => true
@@ -475,7 +475,7 @@ if (!empty($data['form'])) {
 	$data['hosts'] = API::Host()->get([
 		'output' => ['hostid', 'name'],
 		'real_hosts' => true,
-		'editable' => true,
+		'editable' => false,
 		'groupids' => $data['twb_groupid']
 	]);
 
@@ -483,7 +483,7 @@ if (!empty($data['form'])) {
 	$hostsSelected = API::Host()->get([
 		'output' => ['hostid', 'name'],
 		'real_hosts' => true,
-		'editable' => true,
+		'editable' => false,
 		'hostids' => $data['hostids']
 	]);
 	$data['hosts'] = array_merge($data['hosts'], $hostsSelected);
@@ -531,7 +531,7 @@ else {
 		'search' => [
 			'name' => ($filter['name'] === '') ? null : $filter['name']
 		],
-		'editable' => true,
+		'editable' => false,
 		'sortfield' => $sortField,
 		'sortorder' => $sortOrder,
 		'limit' => $config['search_limit'] + 1
