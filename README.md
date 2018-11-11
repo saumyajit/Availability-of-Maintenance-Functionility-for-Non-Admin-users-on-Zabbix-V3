@@ -2,6 +2,8 @@
 
 With the changes applied to the PHP scripts in this project, any Zabbix user will have access to the maintenance menu and can create maintenance periods for the hosts and groups of hosts in which they have access.
 
+Tested on Zabbix 3.4.8.
+
 ## How to use
 
 Overwrite with the scripts in this project the frontend PHP scripts from your Zabbix installation (make a backup of the original scripts).
