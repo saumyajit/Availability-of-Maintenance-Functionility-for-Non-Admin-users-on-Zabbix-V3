@@ -1,8 +1,8 @@
-# zabbix3-maintenance-allusers
+# zabbix4-maintenance-allusers
 
 With the changes applied to the PHP scripts in this project, any Zabbix user will have access to the maintenance menu and can create maintenance periods for the hosts and groups of hosts in which they have access.
 
-Tested on Zabbix 3.4.8.
+Tested on Zabbix 3.4.x Version
 
 ## How to use
 
@@ -15,6 +15,13 @@ Example: if your frontend is located in /var/www/html/zabbix:
 /var/www/html/zabbix/include/menu.inc.php  
 /var/www/html/zabbix/include/classes/api/services/CMaintenance.php  
 ```
+
+or /usr/share/zabbix
+
+```
+/usr/share/zabbix/maintenance.php  
+/usr/share/zabbix/include/menu.inc.php  
+/usr/share/zabbix/include/classes/api/services/CMaintenance.php 
 
 ## Final Result
 
