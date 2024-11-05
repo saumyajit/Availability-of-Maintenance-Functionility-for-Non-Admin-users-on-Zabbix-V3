@@ -1,4 +1,4 @@
-# zabbix3-maintenance-allusers
+# Availability of Maintenance Functionility for Non Admin users on Zabbix V3
 
 With the changes applied to the PHP scripts in this project, any Zabbix user will have access to the maintenance menu and can create maintenance periods for the hosts and groups of hosts in which they have access.
 
